@@ -3,14 +3,14 @@
 
 void* my_turn(void* arg) {
     int x = *(int*)arg; // Cast and dereference the argument
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 500; i++) {
         printf("Hello, my turn is %d\n", i);
     }
     return (void*)(long)x; // Return x as a void pointer
 }
 
 void you_turn(int i) {
-    for (int j = 0; j < 100; j++) {
+    for (int j = 0; j < 500; j++) {
         printf("Hello, your turn is %d\n", j);
     }
 }
