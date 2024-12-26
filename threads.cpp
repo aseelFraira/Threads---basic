@@ -27,10 +27,10 @@ int main() {
 
     // Wait for the new thread to finish,Try deleting this line and see what happens
     void* result;
- //   pthread_join(new_thread, &result);
+    pthread_join(new_thread, &result);
 
     // Print the result (cast back to int)
-  //  printf("Thread returned: %ld\n", (long)result);
+    printf("Thread returned: %ld\n", (long)result);
 
     return 0;
 }
