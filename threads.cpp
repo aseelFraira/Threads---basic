@@ -15,7 +15,7 @@ void you_turn(int i) {
     }
 }
 
-int main() {
+/*int main() {
     pthread_t new_thread; // Holds the ID of the new thread
     int i = 3;
 
@@ -33,4 +33,4 @@ int main() {
     printf("Thread returned: %ld\n", (long)result);
 
     return 0;
-}
+}*/
