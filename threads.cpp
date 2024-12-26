@@ -1,25 +1,36 @@
-#include "pthread.h"
-#include "stdio.h"
+#include <pthread.h>
+#include <stdio.h>
 
-int my_turn(int x){
-    for(int i = 0; i < 5; i++){
-        printf("Hello, my turn is %d\n",i);
+void* my_turn(void* arg) {
+    int x = *(int*)arg; // Cast and dereference the argument
+    for (int i = 0; i < 5; i++) {
+        printf("Hello, my turn is %d\n", i);
     }
-    return x;
+    return (void*)(long)x; // Return x as a void pointer
 }
+
 void you_turn(int i) {
-    for (int i = 0; i < 3; i++) {
-        printf("Hello, your turn is %d\n", i);
+    for (int j = 0; j < 3; j++) {
+        printf("Hello, your turn is %d\n", j);
     }
 }
-int main(){
-    pthread_t new_thread; //will hold the id of the new thread we will create
-    int i  = 3;
-    pthread_create(new_thread,NULL,my_turn,&i); // create a new thread in a program
-                                               // myturn is where the thread will start executing
 
+int main() {
+    pthread_t new_thread; // Holds the ID of the new thread
+    int i = 3;
+
+    // Create a new thread
+    pthread_create(&new_thread, NULL, my_turn, &i);
+
+    // Execute you_turn in the main thread
     you_turn(++i);
-    int result;
-    pthread_join(new_thread,&result);
 
+    // Wait for the new thread to finish
+    void* result;
+    pthread_join(new_thread, &result);
+
+    // Print the result (cast back to int)
+    printf("Thread returned: %ld\n", (long)result);
+
+    return 0;
 }
