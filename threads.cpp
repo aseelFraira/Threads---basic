@@ -10,7 +10,7 @@ void* my_turn(void* arg) {
 }
 
 void you_turn(int i) {
-    for (int j = 0; j < 500; j++) {
+    for (int j = 0; j < 5; j++) {
         printf("Hello, your turn is %d\n", j);
     }
 }
@@ -25,12 +25,12 @@ int main() {
     // Execute you_turn in the main thread
     you_turn(++i);
 
-    // Wait for the new thread to finish
+    // Wait for the new thread to finish,Try deleting this line and see what happens
     void* result;
-    pthread_join(new_thread, &result);
+ //   pthread_join(new_thread, &result);
 
     // Print the result (cast back to int)
-    printf("Thread returned: %ld\n", (long)result);
+  //  printf("Thread returned: %ld\n", (long)result);
 
     return 0;
 }
